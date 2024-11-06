@@ -5,12 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Store implements Serializable {
     @Serial
@@ -21,6 +25,7 @@ public class Store implements Serializable {
     private UUID id;
 
     @Column(unique = true)
+    @NonNull
     private String name;
 
     @NonNull
