@@ -19,3 +19,6 @@ Create an API that acts as a store management tool
 - Use Java 9+ features
 
 - Add a small Readme to document the project
+
+TODOs:
+- add OpenAPI/Swagger definition
