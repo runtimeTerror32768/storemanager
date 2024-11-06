@@ -1,5 +1,6 @@
 package org.cdi.storemanager.store.controllers;
 
+import jakarta.validation.Valid;
 import org.cdi.storemanager.store.dto.ResourceErrorDto;
 import org.cdi.storemanager.store.entities.Store;
 import org.cdi.storemanager.store.services.StoreService;
@@ -31,7 +32,7 @@ public class StoreController {
     }
 
     @PostMapping("/create-store")
-    public Store createStore(@RequestBody Store store) {
+    public Store createStore(@RequestBody @Valid Store store) {
         return storeService.createStore(store);
     }
 }

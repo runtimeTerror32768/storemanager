@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
@@ -25,9 +26,9 @@ public class Store implements Serializable {
     private UUID id;
 
     @Column(unique = true)
-    @NonNull
+    @NotBlank(message = "Name is required")
     private String name;
 
-    @NonNull
+    @NotBlank(message = "Address is required")
     private String address;
 }
