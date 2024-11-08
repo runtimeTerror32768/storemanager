@@ -21,4 +21,6 @@ Create an API that acts as a store management tool
 - Add a small Readme to document the project
 
 TODOs:
+- add logging
+- add unit + integration tests
 - add OpenAPI/Swagger definition
