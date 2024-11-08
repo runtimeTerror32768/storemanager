@@ -1,9 +1,9 @@
 package org.cdi.storemanager.store.services;
 
-import org.cdi.storemanager.store.dto.ResourceOperationStatusDto;
 import org.cdi.storemanager.store.entities.Store;
 import org.cdi.storemanager.store.exceptions.ResourceException;
 import org.cdi.storemanager.store.repositories.StoreRepository;
+import org.cdi.storemanager.store.util.OperationStatusEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -35,12 +35,12 @@ public class StoreService {
         throw new ResourceException("4", "Store not found for update");
     }
 
-    public ResponseEntity<ResourceOperationStatusDto> deleteStore(UUID id) {
+    public ResponseEntity<OperationStatusEnum> deleteStore(UUID id) {
         if (storeRepository.existsById(id)) {
             storeRepository.deleteById(id);
-            return ResponseEntity.ok(new ResourceOperationStatusDto("5", "Store deleted successfully."));
+            return ResponseEntity.ok(OperationStatusEnum.STORE_DELETE_SUCCESSFULLY);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResourceOperationStatusDto("6", "No store found to delete."));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(OperationStatusEnum.NO_STORE_FOUND_DELETE);
         }
     }
 }

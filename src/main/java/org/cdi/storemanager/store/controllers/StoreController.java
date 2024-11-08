@@ -2,9 +2,9 @@ package org.cdi.storemanager.store.controllers;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.cdi.storemanager.store.dto.ResourceOperationStatusDto;
 import org.cdi.storemanager.store.entities.Store;
 import org.cdi.storemanager.store.services.StoreService;
+import org.cdi.storemanager.store.util.OperationStatusEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +32,7 @@ public class StoreController {
     public ResponseEntity<?> getAllStores() {
         List<Store> allStores = storeService.getAllStores();
         if (allStores.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResourceOperationStatusDto("1", "No stores were found."));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(OperationStatusEnum.NO_STORES_FOUND_GET);
         }
         return ResponseEntity.ok(allStores);
     }
@@ -48,7 +48,7 @@ public class StoreController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResourceOperationStatusDto> deleteStore(@PathVariable @NotNull UUID id) {
+    public ResponseEntity<OperationStatusEnum> deleteStore(@PathVariable @NotNull UUID id) {
         return storeService.deleteStore(id);
     }
 }
