@@ -2,6 +2,7 @@ package org.cdi.storemanager.store.controllers;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
 import org.cdi.storemanager.store.entities.Store;
 import org.cdi.storemanager.store.services.StoreService;
 import org.cdi.storemanager.store.util.OperationStatusEnum;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@Slf4j
 @RequestMapping("/api/v1/stores")
 public class StoreController {
     private final StoreService storeService;
@@ -32,8 +34,11 @@ public class StoreController {
     public ResponseEntity<?> getAllStores() {
         List<Store> allStores = storeService.getAllStores();
         if (allStores.isEmpty()) {
+            log.info("Get all stores: error code: {} {}", OperationStatusEnum.NO_STORES_FOUND_GET.getStatusCode(), OperationStatusEnum.NO_STORES_FOUND_GET.getStatusMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(OperationStatusEnum.NO_STORES_FOUND_GET);
         }
+
+        log.info("GET all stores completed successfully.");
         return ResponseEntity.ok(allStores);
     }
 
