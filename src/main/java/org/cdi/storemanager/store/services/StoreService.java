@@ -15,6 +15,8 @@ import java.util.UUID;
 @Slf4j
 @Service
 public class StoreService {
+    //TODO: Maybe re-factor StoreService to implement an interface, that way it may decouple implementations
+
     private final StoreRepository storeRepository;
 
     public StoreService(StoreRepository storeRepository) {
