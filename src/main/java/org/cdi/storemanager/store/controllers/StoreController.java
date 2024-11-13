@@ -8,6 +8,7 @@ import org.cdi.storemanager.store.services.StoreService;
 import org.cdi.storemanager.store.util.OperationStatusEnum;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ public class StoreController {
         this.storeService = storeService;
     }
 
+    @PreAuthorize("hasRole('ROLE_VIEWER')")
     @GetMapping("")
     public ResponseEntity<?> getAllStores() {
         List<Store> allStores = storeService.getAllStores();
@@ -42,16 +44,19 @@ public class StoreController {
         return ResponseEntity.ok(allStores);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("")
     public Store createStore(@RequestBody @Valid Store store) {
         return storeService.createStore(store);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public Store updateStore(@PathVariable UUID id, @RequestBody @Valid Store store) {
         return storeService.updateStore(id, store);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<OperationStatusEnum> deleteStore(@PathVariable @NotNull UUID id) {
         return storeService.deleteStore(id);
