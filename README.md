@@ -14,7 +14,7 @@ The store manager offers the possibility to create and update new stores through
 - for security: it uses @PreAuthorize with role ADMIN for creating, updating, and deleting of stores
 - it uses H2 as in memory database in order to have a fast development and testing
 - it uses Hibernate as ORM with JPA
-- for data validation it uses Jakarta persistentence API and Jakarta validation e.g. for the requests that receive data
+- for data validation it uses Jakarta persistence API and Jakarta validation e.g. for the requests that receive data
 in the body of the request
 - Maven is used as the build tool
 - Lombok is used for minimizing the boilerplate code for getters, setters,++
