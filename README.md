@@ -33,3 +33,4 @@ code and message is returned
 ## TODO: 
 - **OpenAPI/Swagger UI** should be added too which improves service documentation and allows clients to do test
 calls through it's 'Try it out' out of the box functionality
+- **add integration tests** for DB CRUD operations, REST controller using MockMvc
